@@ -1,8 +1,9 @@
 import React from 'react';
+import Wrapper from './style';
 
 function App() {
   return (
-    <div className="App" />
+    <Wrapper justify="center" align="center">asdasdas</Wrapper>
   );
 }
 
