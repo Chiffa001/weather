@@ -3,18 +3,30 @@ import { IPositionState, PositionActionType, PositionActions } from '../../types
 const initialState: IPositionState = {
   loading: false,
   error: null,
-  coordinates: { lat: null, lon: null },
+  coordinates: {
+    lat: null, lon: null, city: null, country: null,
+  },
 };
 
 const positionReducer = (state = initialState, action: PositionActionType): IPositionState => {
   switch (action.type) {
     case PositionActions.START_RECEIVE_POSITION_ACTION:
       return {
-        ...state, loading: true, error: null, coordinates: { lat: null, lon: null },
+        ...state,
+        loading: true,
+        error: null,
+        coordinates: {
+          lat: null, lon: null, city: null, country: null,
+        },
       };
     case PositionActions.ERROR_RECEIVE_POSITION_ACTION:
       return {
-        ...state, error: action.payload, loading: false, coordinates: { lat: null, lon: null },
+        ...state,
+        error: action.payload,
+        loading: false,
+        coordinates: {
+          lat: null, lon: null, city: null, country: null,
+        },
       };
     case PositionActions.SUCCESS_RECEIVE_POSITION_ACTION:
       return {
