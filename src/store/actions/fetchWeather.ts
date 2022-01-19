@@ -5,10 +5,8 @@ import { WheatherActions, WheatherActionType } from '../../types/wheather';
 const fetchWheather = (lat: number, lon: number) => (dispatch: Dispatch<WheatherActionType>) => {
   dispatch({ type: WheatherActions.START_FETCH_WHEATHER_ACTION });
   if (lat !== null && lon !== null) {
-    apiService.getDays(lat, lon)
+    apiService.getWeather(lat, lon)
       .then((response) => {
-        console.log(response);
-
         dispatch({
           type: WheatherActions.SUCCESS_FETCH_WHEATHER_ACTION, payload: response.data.current,
         });

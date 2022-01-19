@@ -8,11 +8,13 @@ export interface IWeatherState {
     wheather: IWeather | null;
 }
 
+export interface IWeatherBodyResponse {
+    timezone: string;
+    current: IWeather;
+}
+
 export interface IWeatherResponse {
-    data: {
-        timezone: string;
-        current: IWeather;
-    };
+    data: IWeatherBodyResponse;
 }
 
 export enum WheatherActions {
