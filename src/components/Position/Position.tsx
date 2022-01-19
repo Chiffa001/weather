@@ -1,4 +1,6 @@
 import React, { FC } from 'react';
+import Flex from '../ui/Flex';
+import { City, Country } from './style';
 
 interface IPositionProps {
     country: string;
@@ -6,13 +8,10 @@ interface IPositionProps {
 }
 
 const Position: FC<IPositionProps> = ({ country, city }) => (
-  <div>
-    <h2>
-      {country}
-      {' '}
-      {city}
-    </h2>
-  </div>
+  <Flex direction="column">
+    <City>{city}</City>
+    <Country>{country}</Country>
+  </Flex>
 );
 
 export default Position;

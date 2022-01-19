@@ -4,6 +4,7 @@ import useTypedSelector from '../../hooks/useTypedSelector';
 import Days from '../Days';
 import Position from '../Position';
 import ThisDay from '../ThisDay';
+import Flex from '../ui/Flex';
 import VisuallyHidden from '../ui/VisuallyHidden';
 import Container from './style';
 
@@ -25,8 +26,10 @@ const Wheather = () => {
   return (
     <Container>
       <VisuallyHidden as="h1">Wheather</VisuallyHidden>
-      {country && city && <Position country={country} city={city} />}
-      {current && <ThisDay current={current} />}
+      <Flex justify="space-between" margin="20px 30px">
+        {current && <ThisDay current={current} />}
+        {country && city && <Position country={country} city={city} />}
+      </Flex>
       {daily && <Days daily={daily} />}
     </Container>
   );

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { IWeatherBodyResponse, IWeatherResponse } from '../types/wheather';
 import WheatherResponseAdapter from '../utils/WheaterResponseAdapter';
-import IApiService from './ApiService';
+import IApiService from './IApiService';
 
 class WheatherService implements IApiService {
   readonly basePath: string = 'https://api.openweathermap.org/data/2.5/onecall';

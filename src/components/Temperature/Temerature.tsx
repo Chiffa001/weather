@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { IDaytimeTemp } from '../../types/wheather';
 import { getDegKelvinInCelsius } from '../../utils';
+import Flex from '../ui/Flex';
 import List from '../ui/List';
 
 interface ITemperatureProps {
@@ -9,24 +10,30 @@ interface ITemperatureProps {
 
 const Temperature: FC<ITemperatureProps> = ({ temperature: { day, morn, night } }) => (
   <List as="ul" direction="column">
-    <li>
+    <Flex as="li" justify="space-around" margin="10px 0">
       Day:
       {' '}
-      {getDegKelvinInCelsius(day)}
-      &#176;
-    </li>
-    <li>
+      <span>
+        {getDegKelvinInCelsius(day)}
+        &#176;
+      </span>
+    </Flex>
+    <Flex as="li" justify="space-around" margin="10px 0">
       Morn:
       {' '}
-      {getDegKelvinInCelsius(morn)}
-      &#176;
-    </li>
-    <li>
+      <span>
+        {getDegKelvinInCelsius(morn)}
+        &#176;
+      </span>
+    </Flex>
+    <Flex as="li" justify="space-around" margin="10px 0">
       Night:
       {' '}
-      {getDegKelvinInCelsius(night)}
-      &#176;
-    </li>
+      <span>
+        {getDegKelvinInCelsius(night)}
+        &#176;
+      </span>
+    </Flex>
   </List>
 );
 

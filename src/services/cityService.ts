@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { IResponseAddress, IAddress, IResponseBodyAddress } from '../types/address';
 import CityResponseAdapter from '../utils/CityResponseAdapter';
-import IApiService from './ApiService';
+import IApiService from './IApiService';
 
 class CityService implements IApiService {
   readonly basePath: string = 'https://suggestions.dadata.ru/suggestions/api/4_1/rs/geolocate/address';
