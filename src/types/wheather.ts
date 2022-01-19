@@ -1,16 +1,33 @@
-export interface IWeather {
+export interface IDaytimeTemp {
+    day: number;
+    morn: number;
+    night: number;
+}
+
+export interface ITemp {
     temp: number | null;
+}
+
+export interface IDay {
+    temp: IDaytimeTemp;
+}
+
+export interface IWeather {
+    current: ITemp | null;
+    daily: IDay[] | null;
 }
 
 export interface IWeatherState {
     loading: boolean;
     error: string | null;
-    wheather: IWeather | null;
+    current: ITemp | null;
+    daily: IDay[] | null;
 }
 
 export interface IWeatherBodyResponse {
     timezone: string;
-    current: IWeather;
+    current: ITemp;
+    daily: IDay[];
 }
 
 export interface IWeatherResponse {

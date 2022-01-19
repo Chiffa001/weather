@@ -7,8 +7,11 @@ const fetchWheather = (lat: number, lon: number) => (dispatch: Dispatch<Wheather
   if (lat !== null && lon !== null) {
     apiService.getWeather(lat, lon)
       .then((response) => {
+        const { current, daily } = response.data;
+
         dispatch({
-          type: WheatherActions.SUCCESS_FETCH_WHEATHER_ACTION, payload: response.data.current,
+          type: WheatherActions.SUCCESS_FETCH_WHEATHER_ACTION,
+          payload: { current, daily },
         });
       })
       .catch((err) => {

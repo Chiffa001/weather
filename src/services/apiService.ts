@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { IWeatherBodyResponse, IWeatherResponse } from '../types/wheather';
+import WheatherResponseAdapter from '../utils/WheaterResponseAdapter';
 
 class ApiService {
   private readonly basePath: string = 'https://api.openweathermap.org/data/2.5/onecall';
@@ -17,7 +18,8 @@ class ApiService {
         appid: this.apiKey,
       },
     });
-    return response;
+    const responseAdapter = new WheatherResponseAdapter(response);
+    return responseAdapter.getConvertedResponse();
   }
 }
 
