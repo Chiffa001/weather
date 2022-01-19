@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { FC } from 'react';
+import { IDay } from '../../types/wheather';
 import Day from '../Day';
-import data from './mockData';
 import List from './style';
 
-const Days = () => (
+interface IDaysProps {
+  daily: IDay[];
+}
+
+const Days: FC<IDaysProps> = ({ daily }) => (
   <List as="ul">
-    {data.map(({ id, day, temperature }) => (
-      <li key={id}>
-        <Day day={day} temperature={temperature} />
+    {daily.map(({ dt, temp }) => (
+      <li key={dt}>
+        <Day day={dt} temperature={temp} />
       </li>
     ))}
   </List>

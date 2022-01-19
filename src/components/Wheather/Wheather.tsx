@@ -8,6 +8,7 @@ import Container from './style';
 
 const Wheather = () => {
   const { coordinates: { lat, lon } } = useTypedSelector((state) => state.position);
+  const { daily, current } = useTypedSelector((state) => state.wheather);
   const { fetchWheather } = useActions();
 
   useEffect(() => {
@@ -19,8 +20,8 @@ const Wheather = () => {
   return (
     <Container>
       <VisuallyHidden as="h1">Wheather</VisuallyHidden>
-      <ThisDay />
-      <Days />
+      {current && <ThisDay current={current} />}
+      {daily && <Days daily={daily} />}
     </Container>
   );
 };

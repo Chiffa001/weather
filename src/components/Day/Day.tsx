@@ -1,25 +1,22 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
+import { IDaytimeTemp } from '../../types/wheather';
+import { getConvertedDate } from '../../utils';
+import Temperature from '../Temperature';
 
-interface IDay {
-    day: string;
-    temperature: string;
-    iconUrl?: string;
+interface IDayProps {
+    day: number;
+    temperature: IDaytimeTemp;
 }
 
-const Day: FC<IDay> = ({ day, temperature, iconUrl }) => {
-  const icon = iconUrl ? null : null;
+const Day: FC<IDayProps> = ({ day, temperature }) => {
+  const date = useMemo(() => getConvertedDate(day), [day]);
 
   return (
     <section>
-      <h3>{day}</h3>
-      {icon}
-      <p>{temperature}</p>
+      <h3>{date}</h3>
+      <Temperature temperature={temperature} />
     </section>
   );
-};
-
-Day.defaultProps = {
-  iconUrl: undefined,
 };
 
 export default Day;

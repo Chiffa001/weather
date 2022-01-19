@@ -10,6 +10,7 @@ export interface ITemp {
 
 export interface IDay {
     temp: IDaytimeTemp;
+    dt: number;
 }
 
 export interface IWeather {

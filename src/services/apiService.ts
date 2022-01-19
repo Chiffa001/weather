@@ -14,7 +14,7 @@ class ApiService {
       params: {
         lat: roundedLat,
         lon: roundedLon,
-        exclude: 'minutely',
+        exclude: 'minutely, hourly',
         appid: this.apiKey,
       },
     });
