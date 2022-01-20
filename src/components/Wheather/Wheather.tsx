@@ -28,7 +28,7 @@ const Wheather = () => {
       <VisuallyHidden as="h1">Wheather</VisuallyHidden>
       <Flex justify="space-between" margin="20px 30px">
         {current && <ThisDay current={current} />}
-        {country && city && <Position country={country} city={city} />}
+        {(country || city) && <Position country={country} city={city} />}
       </Flex>
       {daily && <Days daily={daily} />}
     </Container>

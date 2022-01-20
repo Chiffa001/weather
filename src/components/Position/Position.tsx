@@ -3,8 +3,8 @@ import Flex from '../ui/Flex';
 import { City, Country } from './style';
 
 interface IPositionProps {
-    country: string;
-    city: string;
+    country: string | null;
+    city: string | null;
 }
 
 const Position: FC<IPositionProps> = ({ country, city }) => (
