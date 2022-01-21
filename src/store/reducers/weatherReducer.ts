@@ -1,6 +1,6 @@
 import {
-  IWeatherState, WheatherActions, WheatherActionType,
-} from '../../types/wheather';
+  IWeatherState, WeatherActions, WeatherActionType,
+} from '../../types/weather';
 
 const initialState: IWeatherState = {
   loading: false,
@@ -9,17 +9,17 @@ const initialState: IWeatherState = {
   daily: null,
 };
 
-const wheatherReducer = (state = initialState, action: WheatherActionType): IWeatherState => {
+const weatherReducer = (state = initialState, action: WeatherActionType): IWeatherState => {
   switch (action.type) {
-    case WheatherActions.START_FETCH_WHEATHER_ACTION:
+    case WeatherActions.START_FETCH_WEATHER_ACTION:
       return {
         ...state, error: null, loading: true, current: null, daily: null,
       };
-    case WheatherActions.ERROR_FETCH_WHEATHER_ACTION:
+    case WeatherActions.ERROR_FETCH_WEATHER_ACTION:
       return {
         ...state, error: action.payload, loading: false, current: null, daily: null,
       };
-    case WheatherActions.SUCCESS_FETCH_WHEATHER_ACTION:
+    case WeatherActions.SUCCESS_FETCH_WEATHER_ACTION:
       return {
         ...state,
         error: null,
@@ -32,4 +32,4 @@ const wheatherReducer = (state = initialState, action: WheatherActionType): IWea
   }
 };
 
-export default wheatherReducer;
+export default weatherReducer;

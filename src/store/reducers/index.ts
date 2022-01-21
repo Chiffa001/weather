@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import positionReducer from './positionReducer';
-import wheatherReducer from './wheatherReducer';
+import weatherReducer from './weatherReducer';
 
 const rootReducer = combineReducers({
   position: positionReducer,
-  wheather: wheatherReducer,
+  wheather: weatherReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

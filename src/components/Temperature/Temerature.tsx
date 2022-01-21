@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { IDaytimeTemp } from '../../types/wheather';
+import { IDaytimeTemp } from '../../types/weather';
 import { getDegKelvinInCelsius } from '../../utils';
 import Flex from '../ui/Flex';
 import List from '../ui/List';

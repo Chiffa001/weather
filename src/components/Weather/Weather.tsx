@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import useActions from '../../hooks/useActions';
 import useTypedSelector from '../../hooks/useTypedSelector';
+import { getConvertedDate } from '../../utils';
 import Days from '../Days';
 import Position from '../Position';
 import ThisDay from '../ThisDay';
@@ -8,7 +9,7 @@ import Flex from '../ui/Flex';
 import VisuallyHidden from '../ui/VisuallyHidden';
 import Container from './style';
 
-const Wheather = () => {
+const Weather = () => {
   const {
     coordinates: {
       lat, lon, country, city,
@@ -18,7 +19,10 @@ const Wheather = () => {
   const { fetchWheather } = useActions();
 
   useEffect(() => {
-    if (lat !== null && lon !== null) {
+    if (lat !== null
+      && lon !== null
+      && current
+      && getConvertedDate(current.dt) !== getConvertedDate(Date.now())) {
       fetchWheather(lat, lon);
     }
   }, [lat, lon]);
@@ -35,4 +39,4 @@ const Wheather = () => {
   );
 };
 
-export default Wheather;
+export default Weather;

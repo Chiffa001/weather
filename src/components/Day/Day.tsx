@@ -1,5 +1,5 @@
 import React, { FC, useMemo } from 'react';
-import { IDaytimeTemp } from '../../types/wheather';
+import { IDaytimeTemp } from '../../types/weather';
 import { getConvertedDate } from '../../utils';
 import Temperature from '../Temperature';
 

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { IDay } from '../../types/wheather';
+import { IDay } from '../../types/weather';
 import Day from '../Day';
 import List from '../ui/List';
 

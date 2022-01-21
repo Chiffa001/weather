@@ -1,14 +1,14 @@
 import axios from 'axios';
-import { IWeatherBodyResponse, IWeatherResponse } from '../types/wheather';
-import WheatherResponseAdapter from '../utils/WheaterResponseAdapter';
+import { IWeatherForState, IWeatherBodyResponse, IWeatherResponse } from '../types/weather';
+import WeatherResponseAdapter from '../utils/adapters/WeaterResponseAdapter';
 import ApiService from './ApiService';
 
-class WheatherService extends ApiService<IWeatherResponse> {
+class WeatherService extends ApiService<IWeatherForState> {
   readonly basePath: string = 'https://api.openweathermap.org/data/2.5/onecall';
 
   readonly apiKey: string = '0ffab2c62e437f5a40c1b96ca5701b5f';
 
-  async getData(lat: number, lon: number): Promise<IWeatherResponse> {
+  async getData(lat: number, lon: number): Promise<IWeatherForState> {
     const roundedLat = lat.toFixed(2);
     const roundedLon = lon.toFixed(2);
     const response: IWeatherResponse = await axios.get<IWeatherBodyResponse, IWeatherResponse>(
@@ -22,9 +22,9 @@ class WheatherService extends ApiService<IWeatherResponse> {
         },
       },
     );
-    const responseAdapter = new WheatherResponseAdapter(response);
+    const responseAdapter = new WeatherResponseAdapter(response);
     return responseAdapter.getConvertedResponse();
   }
 }
 
-export default new WheatherService();
+export default new WeatherService();

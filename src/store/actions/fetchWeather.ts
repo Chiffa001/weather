@@ -1,23 +1,23 @@
 import { Dispatch } from 'react';
-import wheatherService from '../../services/wheatherService';
-import { WheatherActions, WheatherActionType } from '../../types/wheather';
+import wheatherService from '../../services/weatherService';
+import { WeatherActions, WeatherActionType } from '../../types/weather';
 
-const fetchWheather = (lat: number, lon: number) => (dispatch: Dispatch<WheatherActionType>) => {
-  dispatch({ type: WheatherActions.START_FETCH_WHEATHER_ACTION });
+const fetchWeather = (lat: number, lon: number) => (dispatch: Dispatch<WeatherActionType>) => {
+  dispatch({ type: WeatherActions.START_FETCH_WEATHER_ACTION });
   if (lat !== null && lon !== null) {
     wheatherService.getData(lat, lon)
       .then((response) => {
-        const { current, daily } = response.data;
+        const { current, daily } = response;
 
         dispatch({
-          type: WheatherActions.SUCCESS_FETCH_WHEATHER_ACTION,
+          type: WeatherActions.SUCCESS_FETCH_WEATHER_ACTION,
           payload: { current, daily },
         });
       })
       .catch((err) => {
-        dispatch({ type: WheatherActions.ERROR_FETCH_WHEATHER_ACTION, payload: err.message });
+        dispatch({ type: WeatherActions.ERROR_FETCH_WEATHER_ACTION, payload: err.message });
       });
   }
 };
 
-export default fetchWheather;
+export default fetchWeather;

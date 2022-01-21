@@ -2,31 +2,28 @@ import { Dispatch } from 'react';
 import cityService from '../../services/cityService';
 import { PositionActions, PositionActionType } from '../../types/coordinates';
 
-const receivePosition = () => (dispatch: Dispatch<PositionActionType>) => {
+const receivePosition = (
+  lat: number,
+  lon: number,
+) => async (dispatch: Dispatch<PositionActionType>) => {
   dispatch({ type: PositionActions.START_RECEIVE_POSITION_ACTION });
-  navigator.geolocation.getCurrentPosition((position) => {
-    const { latitude: lat, longitude: lon } = position.coords;
-    cityService.getData(lat, lon)
-      .then(({ city, country }) => {
-        dispatch({
-          type: PositionActions.SUCCESS_RECEIVE_POSITION_ACTION,
-          payload: {
-            lat, lon, city, country,
-          },
-        });
-      })
-      .catch((err) => {
-        dispatch({
-          type: PositionActions.ERROR_RECEIVE_POSITION_ACTION,
-          payload: err.message,
-        });
-      });
-  }, (err) => {
+  try {
+    // const { coords: { latitude: lat, longitude: lon } } = await getPosition();
+    const { city, country } = await cityService.getData(lat, lon);
     dispatch({
-      type: PositionActions.ERROR_RECEIVE_POSITION_ACTION,
-      payload: err.message,
+      type: PositionActions.SUCCESS_RECEIVE_POSITION_ACTION,
+      payload: {
+        lat, lon, city, country,
+      },
     });
-  });
+  } catch (err) {
+    if (err instanceof Error) {
+      dispatch({
+        type: PositionActions.ERROR_RECEIVE_POSITION_ACTION,
+        payload: err.message,
+      });
+    }
+  }
 };
 
 export default receivePosition;

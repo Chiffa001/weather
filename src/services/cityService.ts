@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { IResponseAddress, IAddress, IResponseBodyAddress } from '../types/address';
-import CityResponseAdapter from '../utils/CityResponseAdapter';
+import CityResponseAdapter from '../utils/adapters/CityResponseAdapter';
 import ApiService from './ApiService';
 
 class CityService extends ApiService<IAddress> {

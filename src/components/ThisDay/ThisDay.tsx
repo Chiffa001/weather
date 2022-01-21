@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import useTypedSelector from '../../hooks/useTypedSelector';
-import { ITemp } from '../../types/wheather';
+import { ITemp } from '../../types/weather';
 import { getDegKelvinInCelsius } from '../../utils';
 
 interface IThisDayProps {
