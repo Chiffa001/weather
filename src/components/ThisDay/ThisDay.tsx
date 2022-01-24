@@ -18,6 +18,7 @@ const ThisDay: FC<IThisDayProps> = () => {
         {current?.temp && getDegKelvinInCelsius(current.temp)}
         &#176;
       </h2>
+      <p>{current?.weather}</p>
       {new Date().toLocaleString('en', {
         month: 'long',
         day: 'numeric',

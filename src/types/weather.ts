@@ -26,29 +26,39 @@ export interface IDay {
     dt: number;
 }
 
+export interface IDailyWeather extends IDay {
+    weather: string;
+}
+
 export interface IWeather {
     current: ICurrentTemp | null;
-    daily: IDay[] | null;
+    daily: IDailyWeather[] | null;
+}
+
+export interface IDailyWeatherBody extends IDay {
+    weather: IWeatherNow[];
 }
 
 export interface IWeatherState {
     loading: boolean;
     error: string | null;
     current: ICurrentTemp | null;
-    daily: IDay[] | null;
+    daily: IDailyWeather[] | null;
 }
 
 interface IBaseResponse {
     timezone: string;
-    daily: IDay[];
+    // daily: IDailyWeatherBody[];
 }
 
 export interface IWeatherBodyResponse extends IBaseResponse {
     current: ICurrent;
+    daily: IDailyWeatherBody[];
 }
 
 export interface IWeatherForState extends IBaseResponse {
     current: ICurrentTemp;
+    daily: IDailyWeather[];
 }
 
 export interface IWeatherResponse {
@@ -61,19 +71,25 @@ export enum WeatherActions {
     SUCCESS_FETCH_WEATHER_ACTION = 'SUCCESS_FETCH_WEATHER_ACTION',
 }
 
-interface IStartFetchWheatherAction {
+export enum Weathers {
+    CLOUDS = 'Clouds',
+    RAIN = 'Rain',
+    SNOW = 'Snow',
+}
+
+interface IStartFetchWeatherAction {
     type: WeatherActions.START_FETCH_WEATHER_ACTION;
 }
 
-interface IErrorFetchWheatherAction {
+interface IErrorFetchWeatherAction {
     type: WeatherActions.ERROR_FETCH_WEATHER_ACTION;
     payload: string;
 }
 
-interface ISuccessFetchWheatherAction {
+interface ISuccessFetchWeatherAction {
     type: WeatherActions.SUCCESS_FETCH_WEATHER_ACTION;
     payload: IWeather;
 }
 
 export type WeatherActionType =
-    IStartFetchWheatherAction | IErrorFetchWheatherAction | ISuccessFetchWheatherAction;
+    IStartFetchWeatherAction | IErrorFetchWeatherAction | ISuccessFetchWeatherAction;

@@ -17,7 +17,7 @@ class WeatherService extends ApiService<IWeatherForState> {
         params: {
           lat: roundedLat,
           lon: roundedLon,
-          exclude: 'minutely, hourly',
+          exclude: 'minutely,hourly',
           appid: this.apiKey,
         },
       },

@@ -1,17 +1,17 @@
 import React, { FC } from 'react';
-import { IDay } from '../../types/weather';
+import { IDailyWeather } from '../../types/weather';
 import Day from '../Day';
 import List from '../ui/List';
 
 interface IDaysProps {
-  daily: IDay[];
+  daily: IDailyWeather[];
 }
 
 const Days: FC<IDaysProps> = ({ daily }) => (
   <List as="ul" justify="space-around">
-    {daily.map(({ dt, temp }) => (
+    {daily.map(({ dt, temp, weather }) => (
       <li key={dt}>
-        <Day day={dt} temperature={temp} />
+        <Day day={dt} temperature={temp} weather={weather} />
       </li>
     ))}
   </List>

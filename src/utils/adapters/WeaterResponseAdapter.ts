@@ -7,7 +7,10 @@ export default class WeatherResponseAdapter extends Adapter<IWeatherResponse, IW
     const weather = current.weather[0].main;
     return {
       current: { temp: current.temp, dt: current.dt, weather },
-      daily: daily.map((day) => ({ temp: day.temp, dt: day.dt })),
+      daily: daily.map((day) => {
+        const dailyWeather = day.weather[0].main;
+        return { temp: day.temp, dt: day.dt, weather: dailyWeather };
+      }),
       timezone,
     };
   }
