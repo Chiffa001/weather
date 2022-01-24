@@ -3,6 +3,7 @@ import useActions from '../../hooks/useActions';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import { getConvertedDate } from '../../utils';
 import Days from '../Days';
+import Events from '../Events';
 import Position from '../Position';
 import ThisDay from '../ThisDay';
 import Flex from '../ui/Flex';
@@ -31,7 +32,10 @@ const Weather = () => {
     <Container>
       <VisuallyHidden as="h1">Wheather</VisuallyHidden>
       <Flex justify="space-between" margin="20px 30px">
-        {current && <ThisDay current={current} />}
+        <Flex>
+          {current && <ThisDay current={current} />}
+          <Events />
+        </Flex>
         {(country || city) && <Position country={country} city={city} />}
       </Flex>
       {daily && <Days daily={daily} />}
