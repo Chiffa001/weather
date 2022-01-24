@@ -1,11 +1,11 @@
 import { Dispatch } from 'react';
-import wheatherService from '../../services/weatherService';
+import weatherService from '../../services/weatherService';
 import { WeatherActions, WeatherActionType } from '../../types/weather';
 
 const fetchWeather = (lat: number, lon: number) => (dispatch: Dispatch<WeatherActionType>) => {
   dispatch({ type: WeatherActions.START_FETCH_WEATHER_ACTION });
   if (lat !== null && lon !== null) {
-    wheatherService.getData(lat, lon)
+    weatherService.getData(lat, lon)
       .then((response) => {
         const { current, daily } = response;
 

@@ -1,5 +1,5 @@
 import { fetchEvents } from './fetchEvents';
 import receivePosition from './receivePosition';
-import fetchWheather from './fetchWeather';
+import fetchWeather from './fetchWeather';
 
-export { receivePosition, fetchWheather, fetchEvents };
+export { receivePosition, fetchWeather, fetchEvents };

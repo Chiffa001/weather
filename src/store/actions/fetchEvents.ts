@@ -1,10 +1,11 @@
+import { loadGapiInsideDOM } from 'gapi-script';
 import { Dispatch } from 'react';
 import { EventActions, EventActionsType, IEvent } from '../../types/event';
 
-export const fetchEvents = () => (dispatch: Dispatch<EventActionsType>) => {
-  const { gapi } = window;
+export const fetchEvents = () => async (dispatch: Dispatch<EventActionsType>) => {
+  const gapi = await loadGapiInsideDOM();
 
-  const getEvents = () => {
+  const getEvents = async () => {
     const timeMin = new Date().toISOString();
     const timeMax = new Date();
     timeMax.setHours(23, 59, 59, 999);
@@ -30,7 +31,7 @@ export const fetchEvents = () => (dispatch: Dispatch<EventActionsType>) => {
     });
   };
 
-  const gapiStart = () => {
+  const gapiStart = async () => {
     dispatch({ type: EventActions.START_FETCH_ACTION_TYPE });
     gapi.load('client:auth2', () => {
       gapi.client.init({

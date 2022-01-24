@@ -17,20 +17,20 @@ const Weather = () => {
     },
   } = useTypedSelector((state) => state.position);
   const { daily, current } = useTypedSelector((state) => state.wheather);
-  const { fetchWheather } = useActions();
+  const { fetchWeather } = useActions();
 
   useEffect(() => {
     if (lat !== null
       && lon !== null
-      && current
-      && getConvertedDate(current.dt) !== getConvertedDate(Date.now())) {
-      fetchWheather(lat, lon);
+      && (!current
+      || getConvertedDate(current.dt) !== getConvertedDate(Date.now()))) {
+      fetchWeather(lat, lon);
     }
-  }, [lat, lon]);
+  }, [lat, lon, current]);
 
   return (
     <Container>
-      <VisuallyHidden as="h1">Wheather</VisuallyHidden>
+      <VisuallyHidden as="h1">Weather</VisuallyHidden>
       <Flex justify="space-between" margin="20px 30px">
         <Flex>
           {current && <ThisDay current={current} />}

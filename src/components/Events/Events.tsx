@@ -4,14 +4,14 @@ import useTypedSelector from '../../hooks/useTypedSelector';
 import { getConvertedDate } from '../../utils';
 
 const Events = () => {
-  const { dt, events } = useTypedSelector((state) => state.events);
+  const { events, dt } = useTypedSelector((state) => state.events);
   const { fetchEvents } = useActions();
 
   useEffect(() => {
     if (!dt || getConvertedDate(dt) !== getConvertedDate(Date.now())) {
       fetchEvents();
     }
-  }, []);
+  }, [dt]);
 
   if (!events) return null;
 

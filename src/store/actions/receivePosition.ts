@@ -8,7 +8,6 @@ const receivePosition = (
 ) => async (dispatch: Dispatch<PositionActionType>) => {
   dispatch({ type: PositionActions.START_RECEIVE_POSITION_ACTION });
   try {
-    // const { coords: { latitude: lat, longitude: lon } } = await getPosition();
     const { city, country } = await cityService.getData(lat, lon);
     dispatch({
       type: PositionActions.SUCCESS_RECEIVE_POSITION_ACTION,
