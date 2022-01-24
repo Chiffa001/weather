@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import { ITemp } from '../../types/weather';
 import { getDegKelvinInCelsius } from '../../utils';
+import { DateNow } from './style';
 
 interface IThisDayProps {
   current: ITemp;
@@ -18,12 +19,13 @@ const ThisDay: FC<IThisDayProps> = () => {
         {current?.temp && getDegKelvinInCelsius(current.temp)}
         &#176;
       </h2>
-      <p>{current?.weather}</p>
-      {new Date().toLocaleString('en', {
-        month: 'long',
-        day: 'numeric',
-        year: 'numeric',
-      })}
+      <DateNow>
+        {new Date().toLocaleString('en', {
+          month: 'long',
+          day: 'numeric',
+          year: 'numeric',
+        })}
+      </DateNow>
     </div>
   );
 };

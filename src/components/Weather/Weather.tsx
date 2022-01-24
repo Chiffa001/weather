@@ -31,7 +31,7 @@ const Weather = () => {
   return (
     <Container>
       <VisuallyHidden as="h1">Weather</VisuallyHidden>
-      <Flex justify="space-between" margin="20px 30px">
+      <Flex justify="space-between" margin="20px 30px" wrap="wrap">
         <Flex direction="column">
           {current && <ThisDay current={current} />}
           <Events />

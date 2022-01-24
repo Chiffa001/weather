@@ -35,15 +35,16 @@ export const fetchEvents = () => async (dispatch: Dispatch<EventActionsType>) =>
     dispatch({ type: EventActions.START_FETCH_ACTION_TYPE });
     gapi.load('client:auth2', () => {
       gapi.client.init({
-        apiKey: 'AIzaSyDzrbQfZJTQDI-EZWjaE0jDqseTkKwao-8',
-        clientId: '510205325519-s2p1co3467qcebpp0r8o19crjqd18c0a.apps.googleusercontent.com',
+        apiKey: 'AIzaSyAslfw_FZwOYeo3lRMFPQQS31bjXavCAtw',
+        clientId: '1004557556199-48gjatbrmsirvt3pvehm62m97v1cgp2u.apps.googleusercontent.com',
         discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'],
         scope: 'https://www.googleapis.com/auth/calendar.events',
       });
 
       gapi.client.load('calendar', 'v3', () => {
         const authInstance = gapi.auth2.getAuthInstance();
-        if (!authInstance.isSignedIn) {
+
+        if (!authInstance.isSignedIn.get()) {
           authInstance.signIn()
             .then(getEvents).catch((err) => {
               if (err instanceof Error) {
