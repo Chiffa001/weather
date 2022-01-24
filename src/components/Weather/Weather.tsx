@@ -32,7 +32,7 @@ const Weather = () => {
     <Container>
       <VisuallyHidden as="h1">Weather</VisuallyHidden>
       <Flex justify="space-between" margin="20px 30px">
-        <Flex>
+        <Flex direction="column">
           {current && <ThisDay current={current} />}
           <Events />
         </Flex>

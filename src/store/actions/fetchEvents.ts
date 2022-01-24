@@ -5,7 +5,7 @@ import { EventActions, EventActionsType, IEvent } from '../../types/event';
 export const fetchEvents = () => async (dispatch: Dispatch<EventActionsType>) => {
   const gapi = await loadGapiInsideDOM();
 
-  const getEvents = async () => {
+  const getEvents = () => {
     const timeMin = new Date().toISOString();
     const timeMax = new Date();
     timeMax.setHours(23, 59, 59, 999);
@@ -31,7 +31,7 @@ export const fetchEvents = () => async (dispatch: Dispatch<EventActionsType>) =>
     });
   };
 
-  const gapiStart = async () => {
+  const gapiStart = () => {
     dispatch({ type: EventActions.START_FETCH_ACTION_TYPE });
     gapi.load('client:auth2', () => {
       gapi.client.init({
@@ -41,21 +41,21 @@ export const fetchEvents = () => async (dispatch: Dispatch<EventActionsType>) =>
         scope: 'https://www.googleapis.com/auth/calendar.events',
       });
 
-      gapi.client.load('calendar', 'v3');
-
-      const authInstance = gapi.auth2.getAuthInstance();
-      if (!authInstance.isSignedIn) {
-        authInstance.signIn()
-          .then(getEvents).catch((err) => {
-            if (err instanceof Error) {
-              dispatch({ type: EventActions.ERROR_FETCH_ACTION_TYPE, payload: err.message });
-            }
+      gapi.client.load('calendar', 'v3', () => {
+        const authInstance = gapi.auth2.getAuthInstance();
+        if (!authInstance.isSignedIn) {
+          authInstance.signIn()
+            .then(getEvents).catch((err) => {
+              if (err instanceof Error) {
+                dispatch({ type: EventActions.ERROR_FETCH_ACTION_TYPE, payload: err.message });
+              }
+            });
+        } else {
+          authInstance.then(getEvents).catch((err: { message: string; }) => {
+            dispatch({ type: EventActions.ERROR_FETCH_ACTION_TYPE, payload: err.message });
           });
-      } else {
-        authInstance.then(getEvents).catch((err: { message: string; }) => {
-          dispatch({ type: EventActions.ERROR_FETCH_ACTION_TYPE, payload: err.message });
-        });
-      }
+        }
+      });
     });
   };
 
