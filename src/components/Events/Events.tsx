@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import useActions from '../../hooks/useActions';
 import useTypedSelector from '../../hooks/useTypedSelector';
-import { EventsList, ListItem } from './style';
+import {
+  EventsList, EventTask, EventTime, ListItem,
+} from './style';
 
 const Events = () => {
   const { events } = useTypedSelector((state) => state.events);
@@ -22,9 +24,9 @@ const Events = () => {
         const minutes = formattedStart.getMinutes();
         return (
           <ListItem key={event.id}>
-            {`${formattedStart.getHours()} : ${!minutes ? '00' : minutes} `}
+            <EventTime>{`${formattedStart.getHours()} : ${!minutes ? '00' : minutes} `}</EventTime>
             {' '}
-            {event.summary}
+            <EventTask>{event.summary}</EventTask>
           </ListItem>
         );
       })}

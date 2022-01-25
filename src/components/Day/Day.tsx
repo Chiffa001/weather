@@ -3,6 +3,7 @@ import { IDaytimeTemp } from '../../types/weather';
 import { getConvertedDate } from '../../utils';
 import Temperature from '../Temperature';
 import WeatherIcon from '../ui/WeatherIcon';
+import { DaySection, Title } from './style';
 
 interface IDayProps {
     day: number;
@@ -14,11 +15,11 @@ const Day: FC<IDayProps> = ({ day, temperature, weather }) => {
   const date = useMemo(() => getConvertedDate(day), [day]);
 
   return (
-    <section>
-      <h3>{date}</h3>
+    <DaySection>
+      <Title>{date}</Title>
       <WeatherIcon weather={weather} />
       <Temperature temperature={temperature} />
-    </section>
+    </DaySection>
   );
 };
 

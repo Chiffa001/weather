@@ -8,7 +8,7 @@ import Position from '../Position';
 import ThisDay from '../ThisDay';
 import Flex from '../ui/Flex';
 import VisuallyHidden from '../ui/VisuallyHidden';
-import Container from './style';
+import { Container, Current } from './style';
 
 const Weather = () => {
   const {
@@ -31,13 +31,13 @@ const Weather = () => {
   return (
     <Container>
       <VisuallyHidden as="h1">Weather</VisuallyHidden>
-      <Flex justify="space-between" margin="20px 30px" wrap="wrap">
+      <Current justify="space-between" margin="40px 50px" wrap="wrap">
         <Flex direction="column">
           {current && <ThisDay current={current} />}
           <Events />
         </Flex>
         {(country || city) && <Position country={country} city={city} />}
-      </Flex>
+      </Current>
       {daily && <Days daily={daily} />}
     </Container>
   );
