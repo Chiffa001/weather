@@ -5,7 +5,9 @@ import background from '../../assets/img/weather-background.jpg';
 
 const Wrapper = styled(Flex)`
     min-height: 100vh;
+    min-width: 530px;
     position: relative;
+    padding: 20px 0;
 
     &:before {
         content: '';

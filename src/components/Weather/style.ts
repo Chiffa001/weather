@@ -8,8 +8,8 @@ export const Container = styled.article`
     background-color: rgba(162, 164, 168, 0.8);
     background: center/ cover no-repeat url(${weatherBackground});
 
-    @media(max-width: 800px) {
-        width: 80%;
+    @media(max-width: 1800px) {
+        width: 90%;
     }
 
     @media(max-width: 600px) {

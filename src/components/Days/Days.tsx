@@ -8,7 +8,7 @@ interface IDaysProps {
 }
 
 const Days: FC<IDaysProps> = ({ daily }) => (
-  <DayList as="ul" justify="space-around" wrap="wrap">
+  <DayList as="ul" justify="flex-start" wrap="wrap">
     {daily.map(({ dt, temp, weather }) => (
       <li key={dt}>
         <Day day={dt} temperature={temp} weather={weather} />
